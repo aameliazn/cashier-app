@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <section class="vh-100" style="background-color: #61719a;">
+    <section class="vh-100" style="background-color: #4e73df;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">
@@ -52,7 +52,7 @@
                                             <label for="floatingPassword">Password</label>
                                         </div>
                                         <div class="d-grid gap-2 pt-1 mb-4">
-                                            <button class="btn btn-lg text-light" style="background-color: #61719a"
+                                            <button class="btn btn-lg text-light" style="background-color: #4e73df"
                                                 type="submit">Login</button>
                                         </div>
                                     </form>
