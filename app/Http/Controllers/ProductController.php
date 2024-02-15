@@ -13,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('super_admin.product');
+        $products = Product::all();
+        return view('pages.product', compact('products'));
     }
 
     /**
@@ -29,7 +30,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->all());
+
+        return back();
     }
 
     /**
@@ -59,8 +62,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return back();
     }
 }
