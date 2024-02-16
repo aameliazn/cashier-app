@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('head', 'Product | Cashy')
+@section('head', 'Client | Cashy')
 
 @section('contents')
 
     <!-- DataTables Example -->
     <div class="card shadow mb-4">
         <div class="card-header d-sm-flex align-items-center justify-content-between py-3">
-            <h4 class="m-0 font-weight-bold text-primary">Data Product</h4>
-            <a href="" data-toggle="modal" data-target="#addProductModal"
+            <h4 class="m-0 font-weight-bold text-primary">Data Client</h4>
+            <a href="" data-toggle="modal" data-target="#addClientModal"
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fa fa-plus fa-sm text-white-50"></i>
-                Add Product
+                Add Client
             </a>
         </div>
         <div class="card-body">
@@ -21,24 +21,24 @@
                         <tr style="text-align: center;">
                             <th width="20px">No</th>
                             <th>Name</th>
-                            <th width="200px">Price</th>
-                            <th width="200px">Stock</th>
+                            <th width="200px">Telephone</th>
+                            <th width="300px">Address</th>
                             <th width="100px"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $item)
+                        @foreach ($clients as $item)
                             <tr>
                                 <td style="vertical-align: middle; text-align: center;">{{ $loop->iteration }}</td>
                                 <td style="vertical-align: middle;">{{ $item->name }}</td>
-                                <td style="vertical-align: middle; text-align: end;">${{ $item->price }}</td>
-                                <td style="vertical-align: middle; text-align: end;">{{ $item->stock }}</td>
+                                <td style="vertical-align: middle; text-align: center;">{{ $item->telephone }}</td>
+                                <td style="vertical-align: middle;">{{ $item->address }}</td>
                                 <td style="vertical-align: middle; text-align: center;">
-                                    <form action="{{ route('product.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('client.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <a href="" data-toggle="modal"
-                                            data-target="#editProductModal{{ $item->id }}" class="btn btn-success"><i
+                                            data-target="#editClientModal{{ $item->id }}" class="btn btn-success"><i
                                                 class="bi bi-pencil-fill"></i></a>
                                         <button type="submit" class="btn btn-danger"><i
                                                 class="bi bi-trash3-fill"></i></button>
@@ -46,46 +46,42 @@
                                 </td>
                             </tr>
 
-                            {{-- Edit Product Modal --}}
-                            <div class="modal fade" id="editProductModal{{ $item->id }}" tabindex="-1" role="dialog"
+                            {{-- Edit Client Modal --}}
+                            <div class="modal fade" id="editClientModal{{ $item->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Update Product </h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Update Client</h5>
                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
-                                        <form action="{{ route('product.update', $item->id) }}" method="POST">
+                                        <form action="{{ route('client.update', $item->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label for="inputProductName">Product Name</label>
+                                                    <label for="inputClientName">Client Name</label>
                                                     <input type="text" name="name"
-                                                        class="form-control form-control-user" id="inputProductName"
+                                                        class="form-control form-control-user" id="inputClientName"
                                                         value="{{ $item->name }}">
                                                 </div>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <label for="inputProductPrice">Product Price</label>
-                                                        <input type="number" step="any" name="price"
-                                                            class="form-control form-control-user" id="inputProductPrice"
-                                                            value="{{ $item->price }}">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label for="inputProductStock">Product Stock</label>
-                                                        <input type="number" name="stock"
-                                                            class="form-control form-control-user" id="inputProductStock"
-                                                            value="{{ $item->stock }}">
-                                                    </div>
+                                                <div class="form-group">
+                                                    <label for="inputClientTelephone">Client Telephone</label>
+                                                    <input type="text" name="telephone"
+                                                        class="form-control form-control-user" id="inputClientTelephone"
+                                                        value="{{ $item->telephone }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputClientAddress">Client Address</label>
+                                                    <textarea name="address" class="form-control form-control-user" id="inputClientAddress">{{ $item->address }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" type="button"
                                                     data-dismiss="modal">Cancel</button>
-                                                <button class="btn btn-primary" type="submit">Update Product</button>
+                                                <button class="btn btn-primary" type="submit">Update Client</button>
                                             </div>
                                         </form>
                                     </div>
@@ -102,41 +98,38 @@
 
 @section('modal')
 
-    <!-- Add Product Modal-->
-    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Add Client Modal-->
+    <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Client </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="{{ route('product.store') }}" method="POST">
+                <form action="{{ route('client.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputProductName">Product Name</label>
+                            <label for="inputClientName">Client Name</label>
                             <input type="text" name="name" class="form-control form-control-user"
-                                id="inputProductName">
+                                id="inputClientName">
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="inputProductPrice">Product Price</label>
-                                <input type="number" step="any" name="price"
-                                    class="form-control form-control-user" id="inputProductPrice">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="inputProductStock">Product Stock</label>
-                                <input type="number" name="stock" class="form-control form-control-user"
-                                    id="inputProductStock">
-                            </div>
+                        <div class="form-group">
+                            <label for="inputClientTelephone">Client Telephone</label>
+                            <input type="text" name="telephone" class="form-control form-control-user"
+                                id="inputClientTelephone">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputClientAddress">Client Address</label>
+                            <textarea name="address" class="form-control form-control-user" id="inputClientAddress"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Add Product</button>
+                        <button class="btn btn-primary" type="submit">Add Client</button>
                     </div>
                 </form>
             </div>

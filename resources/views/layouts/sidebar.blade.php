@@ -44,7 +44,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data</h6>
                 <a class="collapse-item" href="">Staff</a>
-                <a class="collapse-item" href="">Client</a>
+                <a class="collapse-item" href="{{ route('client') }}">Client</a>
             </div>
         </div>
     </li>
