@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('pages.product', compact('products'));
+        return view('pages.product.app', compact('products'));
     }
 
     /**
@@ -54,9 +54,13 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->update($request->all());
+
+        return back();
     }
 
     /**

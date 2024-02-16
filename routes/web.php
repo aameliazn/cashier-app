@@ -13,6 +13,7 @@ Route::middleware('auth')->group(function () {
         Route::get('product', 'index')->name('product');
         Route::post('product/store', 'store')->name('product.store');
         Route::delete('product/destroy/{id}', 'destroy')->name('product.destroy');
+        Route::put('product/update/{id}', 'update')->name('product.update');
     });
 });
 

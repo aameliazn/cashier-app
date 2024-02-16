@@ -86,6 +86,8 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    @yield('modal')
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -102,47 +104,6 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Product Modal-->
-    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product </h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form action="{{ route('product.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="inputProductName">Product Name</label>
-                            <input type="text" name="name" class="form-control form-control-user"
-                                id="inputProductName">
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="inputProductPrice">Product Price</label>
-                                <input type="number" step="any" name="price"
-                                    class="form-control form-control-user" id="inputProductPrice">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="inputProductStock">Product Stock</label>
-                                <input type="number" name="stock" class="form-control form-control-user"
-                                    id="inputProductStock">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Add Product</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
